@@ -29,7 +29,7 @@ class EV(a1.Car):
         Returns:
             _type_: _description_
         """
-        return f"Your electric car is: {super().__str__()}, {self.capacity}, {self.volt}, {self.charging(48)}"        
+        return f"{super().__str__()}, {self.capacity}, {self.volt}, {self.charging(48)}"        
         
     def charging(self, amount):
         self.SoC = self.SoC + (100*(amount/self.capacity))

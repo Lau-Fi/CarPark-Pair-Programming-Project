@@ -9,3 +9,11 @@ Coursework for: 4009B Programming for applications
 @date:   19/03/2024
 
 """
+
+class Station():
+    basicCost = 1
+    def __init(self, unitCost, rating, voltRange):
+        self.unitCost = unitCost
+        self.rating = rating
+        self.voltRange = voltRange
+    
