@@ -13,29 +13,66 @@ Coursework for: 4009B Programming for applications
 class Card:
     numCards = 0
 
-    def __init__(self, credit):
-        self.credit = credit
+    def __init__(self, _credit):
+        """_summary_
+
+        Args:
+            _credit (_type_): _description_
+        """
+        self._credit = _credit
 
     def __str__(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return f"Card with {self.credit} credits available"
 
     @property
-    def Credit(self):
-        return self.credit
+    def credit(self):
+        """_summary_
 
-    def credit(self, value):
-        if value >= 0:
-            self.credit = value
-            return self.credit
+        Returns:
+            _type_: _description_
+        """
+        return self._credit
+
+    @credit.setter
+    def credit(self, credit):
+        """_summary_
+
+        Args:
+            credit (_type_): _description_
+        """
+        if credit >= 0:
+            self._credit = credit
         else:
             print("Invalid credit value. Credit must be a number larger than or equal to 0.")
-
+            self._credit = 0
+    
     def topup(self, value):
+        """_summary_
+
+        Args:
+            value (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         self.credit += value
         return self.credit
 
 
     def pay(self, amount_to_pay):
+        """_summary_
+
+        Args:
+            amount_to_pay (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         if amount_to_pay <= self.credit:
             self.credit -= amount_to_pay
             return True
@@ -43,7 +80,7 @@ class Card:
             return False
 
 def tester():
-    card1 = Card(-18)
+    card1 = Card(18)
     card1.topup(10)
     payed = card1.pay(3)
     print(card1)
