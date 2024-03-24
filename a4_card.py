@@ -26,7 +26,7 @@ class Card:
     def credit(self, value):
         if value >= 0:
             self.credit = value
-            return value
+            return self.credit
         else:
             print("Invalid credit value. Credit must be a number larger than or equal to 0.")
 
@@ -43,13 +43,11 @@ class Card:
             return False
 
 def tester():
-    #electricCar1 = EV("Mitsubishi", "Brown", "PGA5 7KK", 108, 12, 13)    
-    #print(electricCar1)
-
     card1 = Card(-18)
-    card1.topup(0)
-    card1.pay(30)
+    card1.topup(10)
+    payed = card1.pay(3)
     print(card1)
+    print(payed)
 
 if __name__ == "__main__":
     tester()
