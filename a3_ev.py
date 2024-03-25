@@ -29,7 +29,7 @@ class EV(a1.Car):
         Returns:
             _type_: _description_
         """
-        return f"{super().__str__()}, {self.capacity}, {self.volt}, {self.charging(48)}"        
+        return f"{super().__str__()}, {self.capacity}, {self.volt}"        
         
     def charging(self, amount):
         self.SoC = self.SoC + (100*(amount/self.capacity))
@@ -39,7 +39,9 @@ class EV(a1.Car):
 
 def tester():
     electricCar1 = EV("Mitsubishi", "Brown", "PGA5 7KK", 108, 12, 13)    
+    chargeCar = electricCar1.charging(40)
     print(electricCar1)
+    print(chargeCar)
 
 if __name__ == "__main__":
     tester()
