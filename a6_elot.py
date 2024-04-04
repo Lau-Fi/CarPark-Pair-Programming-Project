@@ -22,14 +22,15 @@ class Elot(a2.Spot):
         self.durations = []
 
     def __str__(self):
-        return f"ELot: {super().__str__()}, Charging Station: {self.station}, Status: {self.status}"
+        return f"{super().__str__()}, Charging Station: {self.station}, Status: {self.update(self.status)}"
     
     def update(self, status):
         if status == "Available":
-            status  == "Unavailable"
-        if status == "Unavailable":
-            status == "Available" 
-    
+            status  = "Unavailable"
+        elif status == "Unavailable":
+            status = "Available" 
+        return status
+
     def charging(self, card, ev, duration):
         if (card.credit) >0 and ev.volt >= self.station.voltRange[0] and ev.volt <= self.station.voltRange[1]:
             card.pay(duration*ev.volt)
