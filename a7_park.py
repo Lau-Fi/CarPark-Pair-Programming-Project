@@ -9,15 +9,15 @@ Coursework for: 4009B Programming for applications
 @date:   19/03/2024
 
 """
+import sys
+import a6_elot as a6
+
 class Park:
-    name = 'A&L Carpark'
-    maxNum = 3 
-    spaceIDDictionary = {}
 
     def __init__(self, name, maxNum, spaceIDDictionary):
         self.name = name
         self.maxNum = maxNum
-        self.spaceIDDictionary = {}
+        self.spaceIDDictionary = spaceIDDictionary
         
     
     def __str__(self):
@@ -36,9 +36,10 @@ class Park:
     def remove(ID):
         for i in self.spaceIDDidctionary:
             if i == ID:
-                return self.spaceIDDictionary.pop(i)
+                self.spaceIDDictionary.pop(i)
+                return True
             else:
-                return 'ID not found'
+                return False
 
     
     def numFreeLots(parkingSpacesList):
@@ -50,7 +51,36 @@ class Park:
                 
 
     def toFile(carparkspaces):
-        pass
+        file = open(carparkspaces, 'a')
+        sys.stdout = file
+        for i in self.spaceIDDidctionary:
+            print (f"{i} ")
+            if "e" in i:
+                print(f"ELot ")
+            else:
+                print("Stall ")
+            if self.remove(i) == 'ID not found':
+                print("Unoccupied")
+            else:
+                print("Occupied")
+            print("Durations is...")# HELP ME OUT HERE ALEX WHAT IS THE DURATIONS 
 
-class MaxNumError():
+
+class MaxNumError(): # Nothing goes in this class as its a exception.
     pass
+
+def tester():
+    carPark = Park('A&L Carpark', 3, {})
+    print (carPark)
+    carPark.add(['e0', 'e1', 'e2', 'p0', 'e3', 'e4', 'p1']) #THERE IS ONLY ONE ARGUMENT HERE WHY IS THERE 2 BEING SAID.
+    print (carPark)
+    carPark.remove('e3')
+    print(carPark)
+    carPark.toFile()
+
+
+if __name__ == "__main__":
+    tester()
+
+
+    #the difficulty spike on this question is unabelivible 
