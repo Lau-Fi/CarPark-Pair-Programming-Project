@@ -9,9 +9,8 @@ Coursework for: 4009B Programming for applications
 @date:   19/03/2024
 
 """
-import sys
 import a6_elot as a6
-
+import numbers
 class Park:
 
     def __init__(self, name, maxNum, spaceIDDictionary):
@@ -23,18 +22,19 @@ class Park:
     def __str__(self):
         return f"Name of Carpark: {self.name}. Total number of parking spaces: {len(self.spaceIDDictionary)}"
     
-    def add(parkingSpacesList): 
-        parkingSpacesList = parkingSpacesList.sort()
-        for i in parkingSpacesList:
-            if i < (maxNum-1):
-                self.spaceIDDictionary.append(parkingSpacesList[i])
+    def add(self, parkingSpacesList): 
+        parkingSpacesListFiltered = list(filter(lambda x: isinstance(x, numbers.Number), parkingSpacesList))
+        parkingSpacesListSorted = sorted(parkingSpacesListFiltered)
+        for i in parkingSpacesListSorted:
+            if i < (self.maxNum-1):
+                self.spaceIDDictionary.append(parkingSpacesListSorted[i])
             else:
                 raise MaxNumError('All IDs are allocated.')
         return self.spaceIDDictionary
 
     
-    def remove(ID):
-        for i in self.spaceIDDidctionary:
+    def remove(self, ID):
+        for i in self.spaceIDDictionary:
             if i == ID:
                 self.spaceIDDictionary.pop(i)
                 return True
@@ -44,26 +44,25 @@ class Park:
     
     def numFreeLots(parkingSpacesList):
         numfreelots = []
-        for i in self.spaceIDDidctionary:
+        for i in self.spaceIDDictionary:
             if i != i.isdigit():
                 numfreelots.append(i)
         return numfreelots 
                 
 
-    def toFile(carparkspaces):
-        file = open(carparkspaces, 'a')
-        sys.stdout = file
-        for i in self.spaceIDDidctionary:
-            print (f"{i} ")
-            if "e" in i:
-                print(f"ELot ")
-            else:
-                print("Stall ")
-            if self.remove(i) == 'ID not found':
-                print("Unoccupied")
-            else:
-                print("Occupied")
-            print("Durations is...")# HELP ME OUT HERE ALEX WHAT IS THE DURATIONS 
+    def toFile(self, carparkspaces):
+        with open(carparkspaces, 'w') as f:
+            for i in self.spaceIDDictionary:
+                f.write((f"{i} "))
+                if "e" in i:
+                    f.write((f"ELot "))
+                else:
+                    f.write(("Stall "))
+                if self.remove(i) == 'ID not found':
+                    f.write(("Unoccupied"))
+                else:
+                    f.write(("Occupied"))
+                f.write("Durations is...")# HELP ME OUT HERE ALEX WHAT IS THE DURATIONS 
 
 
 class MaxNumError(): # Nothing goes in this class as its a exception.
@@ -72,11 +71,12 @@ class MaxNumError(): # Nothing goes in this class as its a exception.
 def tester():
     carPark = Park('A&L Carpark', 3, {})
     print (carPark)
-    carPark.add(['e0', 'e1', 'e2', 'p0', 'e3', 'e4', 'p1']) #THERE IS ONLY ONE ARGUMENT HERE WHY IS THERE 2 BEING SAID.
-    print (carPark)
-    carPark.remove('e3')
+    carpark2 = carPark.add(['e0', 'e1', 'e2', 'p0', 'e3', 'e4', 'p1']) 
+    print (carpark2)
+    carpark3 = carPark.remove('e3')
+    print(carpark3)
     print(carPark)
-    carPark.toFile()
+    carPark.toFile('carparkspaces.txt')
 
 
 if __name__ == "__main__":
