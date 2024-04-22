@@ -65,8 +65,12 @@ class Park:
                 f.write("Durations is...")# HELP ME OUT HERE ALEX WHAT IS THE DURATIONS 
 
 
-class MaxNumError(): # Nothing goes in this class as its a exception.
-    pass
+class MaxNumError(): 
+    def __init__(self, error):
+        self.error = error 
+    
+    def __str__(self):
+        return f"An error: {self.error}"
 
 def tester():
     carPark = Park('A&L Carpark', 3, {})
