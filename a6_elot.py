@@ -14,14 +14,39 @@ import a2_spot as a2
 import a3_ev as a3
 import a4_card as a4
 import a5_station as a5
+
 class Elot(a2.Spot):
+    """
+    Represents an electric parking spot.
+
+    Attributes:
+    - station (str): The charging station associated with the spot.
+    - status (str): The status of the spot (e.g., "Available", "Occupied").
+    - durations (list): A list of durations for which the spot has been occupied.
+    """
+
     def __init__(self, station):
+        """
+        Initializes a new instance of the Elot class.
+
+        Parameters:
+        - station (str): The charging station associated with the spot.
+
+        Returns:
+        - None
+        """
         self.station = station
         self.status = a2.Spot
         self.status = "Available"
         self.durations = []
 
     def __str__(self):
+        """
+        Returns a string representation of the Elot object.
+
+        Returns:
+        - str: A string representation of the Elot object.
+        """
         return f"{super().__str__()}, Charging Station: {self.station}, Status: {self.update(self.status)}"
     
     def update(self, status):
