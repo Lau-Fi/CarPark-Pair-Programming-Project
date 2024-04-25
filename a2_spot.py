@@ -12,14 +12,14 @@ Coursework for: 4009B Programming for applications
 import a1_car as a1
 
 class Spot:
-    def __init__(self, status, durations):
+    def __init__(self):
         self.status = "Avaliable"  # Initialises the status as "Available".
         self.durations = []  # Initialises an empty list for durations.
         
     def __str__(self):
         return f"Your Status of car parking is: {self.status}, The car durations is: {self.durations}"
 
-    def parking(self, car, duration):
+    def parking(self, duration):
         """
         Parks a car for a specific duration.
 

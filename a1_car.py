@@ -13,7 +13,7 @@ Coursework for: 4009B Programming for applications
 class Car:
     def __init__(self, model, colour, reg):
         """
-        A constructor method/initaliser that recieves the model. colour and reg plate as 
+        A constructor method/initaliser that receives the model, colour and reg plate as 
         from the class arguments when its called. 
         Args:
             model (string): The Model of the Car. A string.
