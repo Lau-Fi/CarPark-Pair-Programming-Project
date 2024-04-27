@@ -56,12 +56,12 @@ class Park:
         for i in parkingSpacesList:
             if count < self.maxNum:
                 count += 1
-                self.spaceIDDictionary[f'e{count - 1}'] = i
-            elif lotcount < 1 and count > self.maxNum:
+                self.spaceIDDictionary[f'e{count - 1}'] = str(i)
+            elif "Charging" in str(i) and count == self.maxNum:
                 raise MaxNumError(self.maxNum)
             elif count >= self.maxNum:
                 lotcount += 1
-                self.spaceIDDictionary[f'p{lotcount - 1}'] = i
+                self.spaceIDDictionary[f'p{lotcount - 1}'] = str(i)
 
     def remove(self, ID):
         """
