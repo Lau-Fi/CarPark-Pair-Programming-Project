@@ -73,12 +73,10 @@ class Park:
         Returns:
         - bool: True if the parking space was successfully removed, False otherwise.
         """
-        for i in self.spaceIDDictionary:
-            if i == ID:
-                self.spaceIDDictionary.pop(i)
-                return True
-            else:
-                return False
+        if ID in self.spaceIDDictionary:
+            self.spaceIDDictionary.pop(ID)
+            return True
+        return False
 
     def numFreeLots(parkingSpacesList):
         """
@@ -145,9 +143,11 @@ def tester():
     elot3 = a6.Elot(station)
     elot4 = a6.Elot(station)
 
-    lots = [elot1, elot2, elot3, elot4, lot1, lot2, lot3, lot4, lot5]
+    lots = [elot1, elot2, elot3, lot1, lot2, lot3, lot4, lot5]
     carpark_list = carPark.add(lots)
     print(carpark_list)
+    print(carPark)
+    carPark.remove('e0')
     print(carPark)
 
     # print (carpark2)
