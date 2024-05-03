@@ -15,6 +15,7 @@ import a6_elot as a6  # Importing a module named "a6_elot"
 
 import a5_station as a5
 
+import a1_car as a1
 
 class Park:
     def __init__(self, name, maxNum, spaceIDDictionary):
@@ -78,7 +79,7 @@ class Park:
             return True
         return False
 
-    def numFreeLots(parkingSpacesList):
+    def numFreeLots(self):
         """
         Calculates the number of free parking lots in the Park object.
 
@@ -88,11 +89,11 @@ class Park:
         Returns:
         - list: A list of parking space IDs that are free.
         """
-        numfreelots = []
+        freelot = 0
         for i in self.spaceIDDictionary:
-            if i != i.isdigit():
-                numfreelots.append(i)
-        return numfreelots
+            if "e" in i:
+                freelot+=1
+        return f"Elots that are free avaliable: {freelot}"
 
     def toFile(self, carparkspaces):
         """
@@ -147,8 +148,11 @@ def tester():
     carpark_list = carPark.add(lots)
     print(carpark_list)
     print(carPark)
+    print("REMOVE 1 PARKING SPACE: ")
     carPark.remove('e0')
     print(carPark)
+    numberoffreeelots = carPark.numFreeLots()
+    print (numberoffreeelots)
 
     # print (carpark2)
     # carpark3 = carPark.remove('e3')
