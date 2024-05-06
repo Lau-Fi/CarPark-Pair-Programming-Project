@@ -112,11 +112,12 @@ class Park:
                     f.write((f"ELot "))
                 else:
                     f.write(("Stall "))
-                if self.remove(i) == 'ID not found':
-                    f.write(("Unoccupied"))
-                else:
-                    f.write(("Occupied"))
-                f.write("Durations is...")
+                #if self.remove(i) == 'ID not found':
+                    #f.write(("Unoccupied"))
+                #else:
+                    #f.write(("Occupied"))
+                f.write((f"Durations are..."))
+                f.write('\n')
 
 
 # 7-c
@@ -148,11 +149,14 @@ def tester():
     carpark_list = carPark.add(lots)
     print(carpark_list)
     print(carPark)
+    numberoffreeelots = carPark.numFreeLots()
+    print (numberoffreeelots)
     print("REMOVE 1 PARKING SPACE: ")
     carPark.remove('e0')
     print(carPark)
     numberoffreeelots = carPark.numFreeLots()
     print (numberoffreeelots)
+    carPark.toFile('carparkspaces.txt')
 
     # print (carpark2)
     # carpark3 = carPark.remove('e3')
