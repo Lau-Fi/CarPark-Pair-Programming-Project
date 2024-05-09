@@ -62,7 +62,7 @@ class Elot(a2.Spot):
         # Performs the charging operation
         if (card.credit) >0 and ev.volt >= self.station.voltRange[0] and ev.volt <= self.station.voltRange[1]:
             card.pay(duration*ev.volt)
-            self.durations.append(ev.charging(duration))
+            self.durations.append(duration)
             return True
         else:
             return False

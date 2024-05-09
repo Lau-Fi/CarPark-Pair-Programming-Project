@@ -5,7 +5,7 @@ CarPark Project
 Coursework for: 4009B Programming for applications
 
 
-@author: 123456789, 100363107
+@author: 100428707, 100363107
 @date:   19/03/2024
 
 """
@@ -16,6 +16,12 @@ import a6_elot as a6  # Importing a module named "a6_elot"
 import a5_station as a5
 
 import a1_car as a1
+
+import a3_ev as a3
+
+import a4_card as a4
+
+import re
 
 class Park:
     def __init__(self, name, maxNum, spaceIDDictionary):
@@ -95,7 +101,7 @@ class Park:
                 freelot+=1
         return f"Elots that are free avaliable: {freelot}"
 
-    def toFile(self, carparkspaces):
+    def toFile(self, carparkspaces, lots):
         """
         Writes the parking space information to a file.
 
@@ -116,7 +122,7 @@ class Park:
                     f.write(("Unoccupied. "))
                 else:
                     f.write(("Occupied. "))
-                f.write((f"Durations are..."))
+                f.write((f"Durations are {re.findall("^\[.\]$", str(i))}"))
                 f.write('\n')
 
 
@@ -138,19 +144,25 @@ def tester():
     lot4 = a2.Spot()
     lot5 = a2.Spot()
     lot1.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 15)
-    lot2.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 15)
-    lot3.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 15)
-    lot4.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 15)
-    lot5.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 15)
-    print(lot1.durations)
+    lot2.parking(a1.Car("Honda", "Blue", "PG5Q LAX"), 48)
+    lot3.parking(a1.Car("Audi", "Black", "JI9P LYD"), 12)
+    lot4.parking(a1.Car("BMW", "Red", "LY06 QZK"), 90)
+    lot5.parking(a1.Car("Fiat", "Silver", "LQ5Q LKA"), 64)
     
 
-    station = a5.Station(6, 7, (2, 4))
+    station = a5.Station(6, 7, (200, 300))
 
     elot1 = a6.Elot(station)
     elot2 = a6.Elot(station)
     elot3 = a6.Elot(station)
     elot4 = a6.Elot(station)
+
+    elot1.charging(a4.Card(100), a3.EV("Nissan", "Blue", "JG3A, JUV", 2000, 208, 300), 85)
+    print(elot1)
+    elot2.charging(a4.Card(65), a3.EV("Subaru", "White", "JH2O KXT", 3219, 209, 300), 30)
+    elot3.charging(a4.Card(72), a3.EV("Mitsubishi", "Black", "XU8P, AFG", 210, 200, 300), 49)
+    elot4.charging(a4.Card(10), a3.EV("Lotus", "Yellow", "LZ8Y, ALX", 4000, 211, 300), 28)
+
 
     lots = [elot1, elot2, elot3, lot1, lot2, lot3, lot4, lot5]
     carpark_list = carPark.add(lots)
@@ -163,7 +175,7 @@ def tester():
     print(carPark)
     numberOfFreeElots = carPark.numFreeLots()
     print (numberOfFreeElots)
-    carPark.toFile('carparkspaces.txt')
+    carPark.toFile('carparkspaces.txt', lots)
 
     # print (carpark2)
     # carpark3 = carPark.remove('e3')
