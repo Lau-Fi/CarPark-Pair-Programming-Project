@@ -36,6 +36,7 @@ cmPark = [spotInstance1, spotInstance2, spotInstance3, spotInstance4, spotInstan
 a7.Park.toFile(cmPark)
 
 #F
+
 eLots = ["eLot1", "eLot2", "eLot3"]
 
 print(f"Simulating parking events for {eLot}:")
@@ -44,11 +45,26 @@ for event in range(3):
         print(f"Parking event {event+1}: {duration} minutes")
 print()
 
-#g
+#G
+
 import matplotlib.pyplot as plt
+
+'occupied_durations'
+occupied_durations = [120, 90, 150]
+
+# Creating a bar chart
+plt.bar(["eLot1", "eLot2", "eLot3"], occupied_durations)
+
+# Adding labels and title
+plt.xlabel("eLots")
+plt.ylabel("Total Occupied Durations (minutes)")
+plt.title("Total Occupied Durations of eLots")
 
 # Saving the figure as a PDF file
 plt.savefig("zfig.pdf", format="pdf")
+
+# Displaying the plot
+plt.show()
 
 durationsFigure = plt.figure()
 plt.plot()
