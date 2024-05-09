@@ -112,10 +112,10 @@ class Park:
                     f.write((f"ELot "))
                 else:
                     f.write(("Stall "))
-                #if self.remove(i) == 'ID not found':
-                    #f.write(("Unoccupied"))
-                #else:
-                    #f.write(("Occupied"))
+                if "Available" in i:
+                    f.write(("Unoccupied. "))
+                else:
+                    f.write(("Occupied. "))
                 f.write((f"Durations are..."))
                 f.write('\n')
 
@@ -137,6 +137,13 @@ def tester():
     lot3 = a2.Spot()
     lot4 = a2.Spot()
     lot5 = a2.Spot()
+    lot1.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 15)
+    lot2.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 15)
+    lot3.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 15)
+    lot4.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 15)
+    lot5.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 15)
+    print(lot1.durations)
+    
 
     station = a5.Station(6, 7, (2, 4))
 
@@ -149,13 +156,13 @@ def tester():
     carpark_list = carPark.add(lots)
     print(carpark_list)
     print(carPark)
-    numberoffreeelots = carPark.numFreeLots()
-    print (numberoffreeelots)
+    numberOfFreeElots = carPark.numFreeLots()
+    print (numberOfFreeElots)
     print("REMOVE 1 PARKING SPACE: ")
     carPark.remove('e0')
     print(carPark)
-    numberoffreeelots = carPark.numFreeLots()
-    print (numberoffreeelots)
+    numberOfFreeElots = carPark.numFreeLots()
+    print (numberOfFreeElots)
     carPark.toFile('carparkspaces.txt')
 
     # print (carpark2)

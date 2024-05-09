@@ -30,6 +30,8 @@ class Spot:
         Returns:
             Bool: Returns true if spot is available and false otherwisse.
         """
+        print(car)
+        print(duration)
         if  self.status == "Avaliable":  # Check if the spot is available
             self.durations.append(duration)  # Add the duration to the list
             self.status = "Occupied"  # Update the status to "Occupied"
@@ -48,6 +50,7 @@ def tester():
     spot1 = Spot()  # Create a spot object with initial status and empty durations list
     spot1.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 4)  # Park a car for a duration of 4 as example.
     print(spot1)  # Print the spot information
+    print(spot1.durations)
 
 if __name__ == "__main__":
     tester()  # Call the tester function when running the script

@@ -36,7 +36,7 @@ class Elot(a2.Spot):
         - None
         """
         self.station = station
-        self.status = a2.Spot
+        #self.status = a2.Spot
         self.status = "Available"
         self.durations = []
 
