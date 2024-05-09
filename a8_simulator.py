@@ -35,7 +35,21 @@ cmPark = [spotInstance1, spotInstance2, spotInstance3, spotInstance4, spotInstan
 
 a7.Park.toFile(cmPark)
 
+#F
+eLots = ["eLot1", "eLot2", "eLot3"]
 
+print(f"Simulating parking events for {eLot}:")
+for event in range(3):
+        duration = random.randint(10, 120)
+        print(f"Parking event {event+1}: {duration} minutes")
+print()
+
+#g
+import matplotlib.pyplot as plt
+
+# Saving the figure as a PDF file
+plt.savefig("zfig.pdf", format="pdf")
 
 durationsFigure = plt.figure()
 plt.plot()
+
