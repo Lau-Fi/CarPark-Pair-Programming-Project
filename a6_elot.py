@@ -15,6 +15,7 @@ import a3_ev as a3
 import a4_card as a4
 import a5_station as a5
 
+# Represents an electric parking spot.
 class Elot(a2.Spot):
     """
     Represents an electric parking spot.
@@ -50,6 +51,7 @@ class Elot(a2.Spot):
         return f"{super().__str__()}, Charging Station: {self.station}, Status: {self.update(self.status)}"
     
     def update(self, status):
+        # Updates the status of the spot
         if status == "Available":
             status  = "Unavailable"
         elif status == "Unavailable":
@@ -57,6 +59,7 @@ class Elot(a2.Spot):
         return status
 
     def charging(self, card, ev, duration):
+        # Performs the charging operation
         if (card.credit) >0 and ev.volt >= self.station.voltRange[0] and ev.volt <= self.station.voltRange[1]:
             card.pay(duration*ev.volt)
             self.durations.append(ev.charging(duration))
@@ -65,6 +68,7 @@ class Elot(a2.Spot):
             return False
 
 def tester():
+    # Testing the Elot class
     Elotclass = Elot(a5.Station(9, 42, (233, 421)))
     chargeElot = Elotclass.charging(a4.Card(50), a3.EV("Lotus", "Azure", "9RW 7DZL", 500, 300, 0), 60) #duration in mins
     print (Elotclass)
