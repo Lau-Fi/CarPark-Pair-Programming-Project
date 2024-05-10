@@ -101,7 +101,7 @@ class Park:
                 freelot+=1
         return f"Elots that are free avaliable: {freelot}"
 
-    def toFile(self, carparkspaces, lots):
+    def toFile(self, carparkspaces):
         """
         Writes the parking space information to a file.
 
@@ -175,13 +175,7 @@ def tester():
     print(carPark)
     numberOfFreeElots = carPark.numFreeLots()
     print (numberOfFreeElots)
-    carPark.toFile('carparkspaces.txt', lots)
-
-    # print (carpark2)
-    # carpark3 = carPark.remove('e3')
-    # print(carpark3)
-    # print(carPark)
-    # carPark.toFile('carparkspaces.txt')
+    carPark.toFile('carparkspaces.txt')
 
 
 if __name__ == "__main__":
