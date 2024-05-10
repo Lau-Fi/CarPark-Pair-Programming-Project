@@ -16,9 +16,13 @@ import a7_park as a7
 import random
 import matplotlib.pyplot as plt
 
+# A
+
 stationInstance1 = a5.Station(2, 4.8, (16, 32))
 stationInstance2 = a5.Station(5, 4.8, (16, 32))
 stationInstance3 = a5.Station(8, 4.8, (16, 32))
+
+# B
 
 spotInstance1 = a2.Spot("Avaliable", [random.randint(10, 120)])
 spotInstance2 = a2.Spot("Unavaliable", [random.randint(10, 120)])
@@ -26,6 +30,8 @@ spotInstance3 = a2.Spot("Avaliable", [random.randint(10, 120)])
 spotInstance4 = a2.Spot("Avaliable", [])
 spotInstance5 = a2.Spot("Unavaliable", [])
 spotInstance6 = a2.Spot("Avaliable", [])
+
+#C
 
 ELotInstance1 = a6.Elot(stationInstance1)
 ELotInstance2 = a6.Elot(stationInstance2)
