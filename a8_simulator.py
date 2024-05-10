@@ -39,7 +39,7 @@ ELotInstance3 = a6.Elot(stationInstance3)
 
 cmPark = [spotInstance1, spotInstance2, spotInstance3, spotInstance4, spotInstance5, spotInstance6, ELotInstance1, ELotInstance2, ELotInstance3]
 
-a7.Park.toFile(cmPark)
+cmPark.toFile("cmPark.txt")
 
 #F
 
