@@ -122,7 +122,7 @@ class Park:
                     f.write(("Unoccupied. "))
                 else:
                     f.write(("Occupied. "))
-                f.write((f"Durations are {re.findall("^\[.\]$", str(i))}"))
+                f.write((f"Durations are {re.findall("\[\d+\]", str(self.spaceIDDictionary.get(i)))}"))
                 f.write('\n')
 
 
