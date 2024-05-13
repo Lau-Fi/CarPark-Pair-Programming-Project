@@ -140,4 +140,27 @@ ttk.Label(frm, text=f"Welcome to {GUIpark.name}. Number of Parking Lots: {str(le
 ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
 root.mainloop()
 
+Login screen, print enter duration elot or normal lot 
 Total spaces, total spaces occupied, total spaces free, total spaces under repair, 
+
+def elot_clicked():
+    label.config(text="10 Spaces Available")
+
+def stall_clicked():
+    label.config(text="5 Spaces Available")
+
+def no_space_selected():
+    label.config(text="No Spaces Are Selected")
+
+root = tk.Tk()
+
+elot_button = tk.Button(root, text="Elot", command=elot_clicked)
+elot_button.pack()
+
+stall_button = tk.Button(root, text="Stall", command=stall_clicked)
+stall_button.pack()
+
+label = tk.Label(root, text="No Spaces Are Selected")
+label.pack()
+
+root.mainloop()
