@@ -48,10 +48,15 @@ eLotInstance1 = a6.Elot(stationInstance1)
 eLotInstance2 = a6.Elot(stationInstance2)
 eLotInstance3 = a6.Elot(stationInstance3)
 
+randomDuration1 = random.randint(10,120)
+randomDuration2 = random.randint(10,120)
+randomDuration3 = random.randint(10,120)
+
+
 # Charge electric vehicles in eLots
-eLotInstance1.charging(a4.Card(494), a3.EV("Nissan", "Blue", "JG3A, JUV", 2000, 208, 300), random.randint(10, 120))
-eLotInstance2.charging(a4.Card(494), a3.EV("Subaru", "White", "JH2O KXT", 3219, 209, 300), random.randint(10, 120))
-eLotInstance3.charging(a4.Card(494), a3.EV("Lotus", "Yellow", "LZ8Y, ALX", 4000, 211, 300), random.randint(10, 120))
+eLotInstance1.charging(a4.Card(494), a3.EV("Nissan", "Blue", "JG3A, JUV", 2000, 208, 300), randomDuration1)
+eLotInstance2.charging(a4.Card(494), a3.EV("Subaru", "White", "JH2O KXT", 3219, 209, 300), randomDuration2)
+eLotInstance3.charging(a4.Card(494), a3.EV("Lotus", "Yellow", "LZ8Y, ALX", 4000, 211, 300), randomDuration3)
 
 # Print eLotInstance1 details
 print(eLotInstance1)
@@ -65,13 +70,24 @@ parkSimulation.add(cmPark)
 parkSimulation.toFile('cmPark.txt')
 
 # Extract data for electric spaces
-for i in parkSimulation.spaceIDDictionary:
-    if 'e' in i:
-        data = {re.search("\[\d+\]", str(parkSimulation.spaceIDDictionary.get(i)))} 
+data = [randomDuration1, randomDuration2, randomDuration3]
 
-simulatorFig=plt.figure()
-axis = simulatorFig.add_subplot()
 
-axis.plot(data)
+print(data)
 
-simulatorFig.show()
+simLabals = ("eLot 1", "eLot 2", "eLot 3")
+simSizes = data 
+index = [1,2,3]
+
+figure = plt.figure()
+axis = figure.add_subplot()
+
+simColours = ['C1', 'C2', 'C3']
+
+axis.bar(index, simSizes, tick_label=simLabals, color = simColours)
+
+axis.set(xlabel = "Electronic Parking Lots", ylabel = "Duration")
+
+figure.show()
+
+figure.savefig("CarParkeLotDurationsGRAPH.jpg")
