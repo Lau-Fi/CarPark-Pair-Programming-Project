@@ -20,7 +20,6 @@ import a4_card as a4  # Module for cards
 import a3_ev as a3  # Module for electric vehicles
 import matplotlib.pyplot as plt  # Module for plotting
 import numpy as np  # Module for number python
-import re  # Module for regular expressions
 
 # Create station instances
 stationInstance1 = a5.Station(2, 4.8, (100, 400))
@@ -88,6 +87,6 @@ axis.bar(index, simSizes, tick_label=simLabals, color = simColours)
 
 axis.set(xlabel = "Electronic Parking Lots", ylabel = "Duration")
 
-figure.show()
+plt.show()
 
 figure.savefig("CarParkeLotDurationsGRAPH.jpg")
