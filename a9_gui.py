@@ -69,3 +69,5 @@ ttk.Label(frm, text=f"Welcome to {GUIpark.name}. Number of Parking Lots: {str(le
 ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
 root.mainloop()
 
+
+>>>>>>> f9df724dd6f730b72a915e95e832ecdb86d742c9
