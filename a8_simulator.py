@@ -15,11 +15,16 @@ import a6_elot as a6
 import a7_park as a7 
 import random
 import a1_car as a1
-#import matplotlib.pyplot as plt
+import a4_card as a4
+import a3_ev as a3
+import matplotlib.pyplot as plt
+import numpy as mpl 
+import matplotlib as mpl
+import re
 
-stationInstance1 = a5.Station(2, 4.8, (16, 32))
-stationInstance2 = a5.Station(5, 4.8, (16, 32))
-stationInstance3 = a5.Station(8, 4.8, (16, 32))
+stationInstance1 = a5.Station(2, 4.8, (100, 400))
+stationInstance2 = a5.Station(5, 4.8, (100, 400))
+stationInstance3 = a5.Station(8, 4.8, (100, 400))
 
 # B
 
@@ -30,54 +35,34 @@ spotInstance4 = a2.Spot()
 spotInstance5 = a2.Spot()
 spotInstance6 = a2.Spot()
 
-spotInstance1.parking(a1.Car("Toyota", "Green", "BD5I SMR"), [random.randint(10, 120)])
-spotInstance2.parking(a1.Car("Honda", "Blue", "PG5Q LAX"), [random.randint(10, 120)])
-spotInstance3.parking(a1.Car("Audi", "Black", "JI9P LYD"), [random.randint(10, 120)])
+spotInstance1.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 43)
+spotInstance2.parking(a1.Car("Honda", "Blue", "PG5Q LAX"), 12)
+spotInstance3.parking(a1.Car("Audi", "Black", "JI9P LYD"), 68)
 spotInstance4.parking(a1.Car("BMW", "Red", "LY06 QZK"), 90)
 spotInstance5.parking(a1.Car("Fiat", "Silver", "LQ5Q LKA"), 64)
 spotInstance6.parking(a1.Car("Mclaren", "Lime", "D76C CAS"), 64)
 
 
-ELotInstance1 = a6.Elot(stationInstance1)
-ELotInstance2 = a6.Elot(stationInstance2)
-ELotInstance3 = a6.Elot(stationInstance3)
+eLotInstance1 = a6.Elot(stationInstance1)
+eLotInstance2 = a6.Elot(stationInstance2)
+eLotInstance3 = a6.Elot(stationInstance3)
 
-cmPark = {spotInstance1, spotInstance2, spotInstance3, spotInstance4, spotInstance5, spotInstance6, ELotInstance1, ELotInstance2, ELotInstance3}
+#F
+eLotInstance1.charging(a4.Card(494), a3.EV("Nissan", "Blue", "JG3A, JUV", 2000, 208, 300), random.randint(10, 120))
+eLotInstance2.charging(a4.Card(494), a3.EV("Subaru", "White", "JH2O KXT", 3219, 209, 300), random.randint(10, 120))
+eLotInstance3.charging(a4.Card(494), a3.EV("Lotus", "Yellow", "LZ8Y, ALX", 4000, 211, 300), random.randint(10, 120))
+
+print(eLotInstance1)
+
+cmPark = [eLotInstance1, eLotInstance2, eLotInstance3, spotInstance1, spotInstance2, spotInstance3, spotInstance4, spotInstance5, spotInstance6]
 
 parkSimulation = a7.Park('Laurence and Alexs carpark', 3, {})
 parkSimulation.add(cmPark)
 parkSimulation.toFile('cmPark.txt')
 
-#F
 
-# eLots = ["eLot1", "eLot2", "eLot3"]
+#G
 
-# print(f"Simulating parking events for {eLot}:")
-# for event in range(3):
-#         duration = random.randint(10, 120)
-#         print(f"Parking event {event+1}: {duration} minutes")
-# print()
-
-# #G
-
-
-# 'occupied_durations'
-# occupied_durations = [120, 90, 150]
-
-# # Creating a bar chart
-# plt.bar(["eLot1", "eLot2", "eLot3"], occupied_durations)
-
-# # Adding labels and title
-# plt.xlabel("eLots")
-# plt.ylabel("Total Occupied Durations (minutes)")
-# plt.title("Total Occupied Durations of eLots")
-
-# # Saving the figure as a PDF file
-# plt.savefig("zfig.pdf", format="pdf")
-
-# # Displaying the plot
-# plt.show()
-
-# durationsFigure = plt.figure()
-# plt.plot()
-
+for i in parkSimulation.spaceIDDictionary:
+    if 'e' in i:
+        data = {re.findall("\[\d+\]", str(parkSimulation.spaceIDDictionary.get(i)))} 
