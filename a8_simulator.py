@@ -65,4 +65,11 @@ parkSimulation.toFile('cmPark.txt')
 
 for i in parkSimulation.spaceIDDictionary:
     if 'e' in i:
-        data = {re.findall("\[\d+\]", str(parkSimulation.spaceIDDictionary.get(i)))} 
+        data = {re.search("\[\d+\]", str(parkSimulation.spaceIDDictionary.get(i)))} 
+
+simulatorFig=plt.figure()
+axis = simulatorFig.add_subplot()
+
+axis.plot(data)
+
+simulatorFig.show()
