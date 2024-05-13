@@ -9,19 +9,19 @@ Coursework for: 4009B Programming for applications
 @date:   19/03/2024
 
 """
-import a2_spot as a2
+import a2_spot as a2  # Importing a module named "a2_spot"
 
 import a6_elot as a6  # Importing a module named "a6_elot"
 
-import a5_station as a5
+import a5_station as a5  # Importing a module named "a5_station"
 
-import a1_car as a1
+import a1_car as a1  # Importing a module named "a1_car"
 
-import a3_ev as a3
+import a3_ev as a3  # Importing a module named "a3_ev"
 
-import a4_card as a4
+import a4_card as a4  # Importing a module named "a4_card"
 
-import re
+import re  # Importing the "re" module, which provides support for regular expressions in Python
 
 class Park:
     def __init__(self, name, maxNum, spaceIDDictionary):
@@ -33,9 +33,9 @@ class Park:
         - maxNum (int): The maximum number of parking spaces.
         - spaceIDDictionary (dict): A dictionary containing the space IDs and their corresponding information.
         """
-        self.name = 'Laurence and Alexs carpark'
-        self.maxNum = 3
-        self.spaceIDDictionary = {}
+        self.name = 'Laurence and Alexs carpark'  # Assigning the value 'Laurence and Alexs carpark' to the "name" attribute
+        self.maxNum = 3  # Assigning the value 3 to the "maxNum" attribute
+        self.spaceIDDictionary = {}  # Initializing an empty dictionary and assigning it to the "spaceIDDictionary" attribute
 
     def __str__(self):
         """
@@ -57,18 +57,12 @@ class Park:
         Returns:
         - list: The updated space ID dictionary after adding the parking spaces.
         """
-        # count = len(self.spaceIDDictionary)
         count = 0
         lotcount = 0
         for i in parkingSpacesList:
             if count < self.maxNum:
                 count += 1
-                self.spaceIDDictionary[f'e{count - 1}'] = str(i)
-            elif "Charging" in str(i) and count == self.maxNum:
-                raise MaxNumError(self.maxNum)
-            elif count >= self.maxNum:
-                lotcount += 1
-                self.spaceIDDictionary[f'p{lotcount - 1}'] = str(i)
+                self.spaceIDDictionary
 
     def remove(self, ID):
         """

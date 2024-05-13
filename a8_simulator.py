@@ -21,6 +21,8 @@ stationInstance1 = a5.Station(2, 4.8, (16, 32))
 stationInstance2 = a5.Station(5, 4.8, (16, 32))
 stationInstance3 = a5.Station(8, 4.8, (16, 32))
 
+# B
+
 spotInstance1 = a2.Spot()
 spotInstance2 = a2.Spot()
 spotInstance3 = a2.Spot()
