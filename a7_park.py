@@ -152,10 +152,13 @@ def tester():
 
     station = a5.Station(6, 7, (200, 300))
 
+
     elot1 = a6.Elot(station)
     elot2 = a6.Elot(station)
     elot3 = a6.Elot(station)
     elot4 = a6.Elot(station)
+
+   
 
     elot1.charging(a4.Card(100), a3.EV("Nissan", "Blue", "JG3A, JUV", 2000, 208, 300), 85)
     print(elot1)

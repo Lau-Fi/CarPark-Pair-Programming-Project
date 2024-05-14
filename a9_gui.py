@@ -22,75 +22,75 @@ import random
 
 import tkinter as tk
 
-def create_gui():
-    # Create the main window
-    window = tk.Tk()
+# def create_gui():
+#     # Create the main window
+#     window = tk.Tk()
 
-    # Set the window title
-    window.title("cmPark")
+#     # Set the window title
+#     window.title("cmPark")
 
-    # Create and pack the welcome message label
-    welcome_label = tk.Label(window, text="Welcome to cmPark!")
-    welcome_label.pack()
+#     # Create and pack the welcome message label
+#     welcome_label = tk.Label(window, text="Welcome to cmPark!")
+#     welcome_label.pack()
 
-    # Create and pack the total number of parking spaces label
-    spaces_label = tk.Label(window, text="There are 7 spots in the car park.")
-    spaces_label.pack()
+#     # Create and pack the total number of parking spaces label
+#     spaces_label = tk.Label(window, text="There are 7 spots in the car park.")
+#     spaces_label.pack()
 
-    # Run the main event loop
-    window.mainloop()
+#     # Run the main event loop
+#     window.mainloop()
 
-#B
+# #B
 
-def display_selected_spaces():
-    selected_spaces = []
+# def display_selected_spaces():
+#     selected_spaces = []
 
-    if stall_var.get():
-        selected_spaces.append("Stall")
-    if elot_var.get():
-        selected_spaces.append("eLot")
+#     if stall_var.get():
+#         selected_spaces.append("Stall")
+#     if elot_var.get():
+#         selected_spaces.append("eLot")
 
-    if selected_spaces:
-        message = "Selected spaces: " + ", ".join(selected_spaces)
-    else:
-        message = "No spaces are selected!"
+#     if selected_spaces:
+#         message = "Selected spaces: " + ", ".join(selected_spaces)
+#     else:
+#         message = "No spaces are selected!"
 
-    message_text.delete("1.0", tk.END)
-    message_text.insert(tk.END, message)
+#     message_text.delete("1.0", tk.END)
+#     message_text.insert(tk.END, message)
 
-def create_gui():
-    # Create the main window
-    window = tk.Tk()
+# def create_gui():
+#     # Create the main window
+#     window = tk.Tk()
 
-    # Set the window title
-    window.title("cmPark")
+#     # Set the window title
+#     window.title("cmPark")
 
-    # Create and pack the welcome message label
-    welcome_label = tk.Label(window, text="Welcome to cmPark!")
-    welcome_label.pack()
+#     # Create and pack the welcome message label
+#     welcome_label = tk.Label(window, text="Welcome to cmPark!")
+#     welcome_label.pack()
 
-    # Create and pack the check buttons
-    stall_var = tk.IntVar()
-    stall_check = tk.Checkbutton(window, text="Stall", variable=stall_var)
-    stall_check.pack()
+#     # Create and pack the check buttons
+#     stall_var = tk.IntVar()
+#     stall_check = tk.Checkbutton(window, text="Stall", variable=stall_var)
+#     stall_check.pack()
 
-    elot_var = tk.IntVar()
-    elot_check = tk.Checkbutton(window, text="eLot", variable=elot_var)
-    elot_check.pack()
+#     elot_var = tk.IntVar()
+#     elot_check = tk.Checkbutton(window, text="eLot", variable=elot_var)
+#     elot_check.pack()
 
-    # Create and pack the button to display selected spaces
-    display_button = tk.Button(window, text="Display Selected Spaces", command=display_selected_spaces)
-    display_button.pack()
+#     # Create and pack the button to display selected spaces
+#     display_button = tk.Button(window, text="Display Selected Spaces", command=display_selected_spaces)
+#     display_button.pack()
 
-    # Create and pack the message text widget
-    message_text = tk.Text(window, height=5, width=30)
-    message_text.pack()
+#     # Create and pack the message text widget
+#     message_text = tk.Text(window, height=5, width=30)
+#     message_text.pack()
 
-    # Run the main event loop
-    window.mainloop()
+#     # Run the main event loop
+#     window.mainloop()
 
 # Call the function to create the GUI
-create_gui()
+#create_gui()
 # Create station instances
 stationInstance1 = a5.Station(2, 4.8, (100, 400))
 stationInstance2 = a5.Station(5, 4.8, (100, 400))
@@ -117,6 +117,11 @@ eLotInstance1 = a6.Elot(stationInstance1)
 eLotInstance2 = a6.Elot(stationInstance2)
 eLotInstance3 = a6.Elot(stationInstance3)
 
+eLotInstance1.update("Unavaliable")
+eLotInstance2.update("Unavaliable")
+eLotInstance3.update("Avaliable")
+
+
 randomDuration1 = random.randint(10,120)
 randomDuration2 = random.randint(10,120)
 randomDuration3 = random.randint(10,120)
@@ -132,35 +137,105 @@ cmPark = [eLotInstance1, eLotInstance2, eLotInstance3, spotInstance1, spotInstan
 GUIpark = a7.Park('Laurences carpark', 3, {})
 GUIpark.add(cmPark)
 
+def numfreelots():
+     freelot = 0
+     for i in GUIpark.spaceIDDictionary:
+        if "p" in i:
+            freelot+=1
+     return f"Lots avaliable: {freelot}"
+
+def displayELot():
+    for i in GUIpark.spaceIDDictionary:
+            if "e" in i:
+                Elots = tk.Label(root, text=f"{i}")
+                Elots.grid()
+    toGrid = tk.Label(root, text = str(GUIpark.numFreeLots()))
+    toGrid.grid()
+
+def displayLot():
+    for i in GUIpark.spaceIDDictionary:
+            if "p" in i:
+                Elots = tk.Label(root, text=f"{i}")
+                Elots.grid()
+    toGrid = tk.Label(root, text = str(numfreelots()))
+    toGrid.grid()
+
+
+
+
+
 root = Tk()
 frm = ttk.Frame(root, padding=10)
 frm.grid()
 root.title("Laurence and Alex's Carpark")
+default1 = IntVar(root)
+default1.set(0)
+default2 = IntVar(root)
+default2.set(0)
 ttk.Label(frm, text=f"Welcome to {GUIpark.name}. Number of Parking Lots: {str(len(GUIpark.spaceIDDictionary))}!").grid(column=0, row=0)
-ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-root.mainloop()
+ttk.Button(frm, text="Quit", command=root.destroy).grid(column=0, row=4)
+ttk.Checkbutton(frm, onvalue=1, offvalue=0, command = displayLot, variable=default1, text="Stall (Standard Lot)").grid(column=0, row=2)
+ttk.Checkbutton(frm, onvalue=1, offvalue=0, command = displayELot, variable=default2, text="eLot").grid(column=1, row=2)
 
-Login screen, print enter duration elot or normal lot 
-Total spaces, total spaces occupied, total spaces free, total spaces under repair, 
 
-def elot_clicked():
-    label.config(text="10 Spaces Available")
 
-def stall_clicked():
-    label.config(text="5 Spaces Available")
 
-def no_space_selected():
-    label.config(text="No Spaces Are Selected")
-
-root = tk.Tk()
-
-elot_button = tk.Button(root, text="Elot", command=elot_clicked)
-elot_button.pack()
-
-stall_button = tk.Button(root, text="Stall", command=stall_clicked)
-stall_button.pack()
-
-label = tk.Label(root, text="No Spaces Are Selected")
-label.pack()
 
 root.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Login screen, print enter duration elot or normal lot 
+# Total spaces, total spaces occupied, total spaces free, total spaces under repair, 
+
+# def elot_clicked():
+#     label.config(text="10 Spaces Available")
+
+# def stall_clicked():
+#     label.config(text="5 Spaces Available")
+
+# def no_space_selected():
+#     label.config(text="No Spaces Are Selected")
+
+# root = tk.Tk()
+
+# elot_button = tk.Button(root, text="Elot", command=elot_clicked)
+# elot_button.pack()
+
+# stall_button = tk.Button(root, text="Stall", command=stall_clicked)
+# stall_button.pack()
+
+# label = tk.Label(root, text="No Spaces Are Selected")
+# label.pack()
+
+# root.mainloop()
