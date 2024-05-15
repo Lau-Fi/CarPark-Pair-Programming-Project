@@ -152,7 +152,7 @@ def tester():
 
     station = a5.Station(6, 7, (200, 300))
 
-
+    # Create four Elot objects and assign them to the station
     elot1 = a6.Elot(station)
     elot2 = a6.Elot(station)
     elot3 = a6.Elot(station)
@@ -167,10 +167,18 @@ def tester():
     elot4.charging(a4.Card(10), a3.EV("Lotus", "Yellow", "LZ8Y, ALX", 4000, 211, 300), 28)
 
 
+    # Create a list of Elot and Spot objects
     lots = [elot1, elot2, elot3, lot1, lot2, lot3, lot4, lot5]
+    
+    
+# Add the lots to the carPark object and retrieve the updated carpark_list
     carpark_list = carPark.add(lots)
     print(carpark_list)
+    
+    # Print the current state of the carPark object
     print(carPark)
+    
+    # Get the number of free parking lots in the carPark object
     numberOfFreeElots = carPark.numFreeLots()
     print (numberOfFreeElots)
     print("REMOVE 1 PARKING SPACE: ")
@@ -179,9 +187,6 @@ def tester():
     numberOfFreeElots = carPark.numFreeLots()
     print (numberOfFreeElots)
     carPark.toFile('carparkspaces.txt')
-
-
-
 
 if __name__ == "__main__":
     tester()

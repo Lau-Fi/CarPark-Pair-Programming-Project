@@ -11,24 +11,54 @@ Coursework for: 4009B Programming for applications
 """
 
 class Card:
+    """
+    Represents a credit card with a certain amount of credit.
+
+    Attributes:
+        credit (float): The available credit on the card.
+    """
+
     numCards = 0
 
     def __init__(self, _credit):
-        # Initialize the Card object with a given credit value
+        """
+        Initializes a Card object with a given credit value.
+
+        Args:
+            _credit (float): The initial credit value.
+        """
         self._credit = _credit
 
     def __str__(self):
-        # Return a string representation of the Card object
+        """
+        Returns a string representation of the Card object.
+
+        Returns:
+            str: A string describing the card's available credit.
+        """
         return f"Card with {self.credit} credits available"
 
     @property
     def credit(self):
-        # Get the credit value of the Card object
+        """
+        Gets the credit value of the Card object.
+
+        Returns:
+            float: The available credit.
+        """
         return self._credit
 
     @credit.setter
     def credit(self, credit):
-        # Set the credit value of the Card object, making sure it's not negative
+        """
+        Sets the credit value of the Card object.
+
+        Args:
+            credit (float): The new credit value.
+
+        Notes:
+            Ensures that the credit is not negative.
+        """
         if credit >= 0:
             self._credit = credit
         else:
@@ -36,15 +66,28 @@ class Card:
             self._credit = 0
     
     def topup(self, value):
-        # Add the given value to the credit of the Card object
+        """
+        Adds the given value to the credit of the Card object.
+
+        Args:
+            value (float): The amount to add to the credit.
+
+        Returns:
+            float: The updated credit after topping up.
+        """
         self.credit += value
         return self.credit
 
-
     def pay(self, amount_to_pay):
-        # Check if the Card object has enough credit to pay the given amount
-        # If yes, deduct the amount from the credit and return True
-        # If no, return False
+        """
+        Simulates a payment from the Card object.
+
+        Args:
+            amount_to_pay (float): The amount to pay.
+
+        Returns:
+            bool: True if payment successful, False if insufficient credit.
+        """
         if amount_to_pay <= self.credit:
             self.credit -= amount_to_pay
             return True
@@ -66,4 +109,5 @@ def tester():
 if __name__ == "__main__":
     # Call the tester function when the module is run directly
     tester()
+
 

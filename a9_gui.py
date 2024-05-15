@@ -72,54 +72,80 @@ GUIpark = a7.Park('Laurences carpark', 3, {})
 GUIpark.add(cmPark)
 
 def numfreelots():
-     freelot = 0
-     for i in GUIpark.spaceIDDictionary:
+    """
+    Counts the number of available parking lots and returns the count as a string.
+    """
+    freelot = 0
+    for i in GUIpark.spaceIDDictionary:
         if "p" in i:
-            freelot+=1
-     return f"Lots avaliable: {freelot}"
+            freelot += 1
+    return f"Lots available: {freelot}"
 
 def displayELot():
+    """
+    Displays the available electronic parking lots on the GUI.
+    """
     noSpaces.grid_forget()
     try:
         if default2.get():
             for i in GUIpark.spaceIDDictionary:
-                    if "e" in i:
-                        Elots = tk.Label(root, text=f"{i}")
-                        Elots.grid()
-            toGrid = tk.Label(root, text = str(GUIpark.numFreeLots()))
+                if "e" in i:
+                    Elots = tk.Label(root, text=f"{i}")
+                    Elots.grid()
+            toGrid = tk.Label(root, text=str(GUIpark.numFreeLots()))
             toGrid.grid()
-        
     except:
         Elots.grid_forget()
         toGrid.grid_forget()
 
 def displayLot():
+    """
+    Displays the available parking lots on the GUI.
+    """
     noSpaces.grid_forget()
     try:
-         if default1.get():    
+        if default1.get():    
             for i in GUIpark.spaceIDDictionary:
-                    if "p" in i:
-                        Lots = tk.Label(root, text=f"{i}")
-                        Lots.grid()
-            toGrid = tk.Label(root, text = str(numfreelots()))
+                if "p" in i:
+                    Lots = tk.Label(root, text=f"{i}")
+                    Lots.grid()
+            toGrid = tk.Label(root, text=str(numfreelots()))
             toGrid.grid()
     except:
         Lots.grid_forget()
-        toGrid.grid_forget()    
+        toGrid.grid_forget()   
 
+# Create the root window
 root = Tk()
+
+# Create a frame with padding
 frm = ttk.Frame(root, padding=10)
 frm.grid()
+
+# Set the title of the window
 root.title("Laurence and Alex's Carpark")
+
+# Create variables for the checkboxes
 default1 = IntVar(root)
 default1.set(0)
 default2 = IntVar(root)
 default2.set(0)
+
+# Display a welcome message with the number of parking lots
 ttk.Label(frm, text=f"Welcome to {GUIpark.name}. Number of Parking Lots: {str(len(GUIpark.spaceIDDictionary))}!").grid(column=0, row=0)
+
+# Create a Quit button to exit the program
 ttk.Button(frm, text="Quit", command=root.destroy).grid(column=0, row=4)
-ttk.Checkbutton(frm, onvalue=1, offvalue=0, command = displayLot, variable=default1, text="Stall (Standard Lot)").grid(column=0, row=2)
-ttk.Checkbutton(frm, onvalue=1, offvalue=0, command = displayELot, variable=default2, text="eLot").grid(column=1, row=2)
+
+# Create a checkbox for standard parking lots
+ttk.Checkbutton(frm, onvalue=1, offvalue=0, command=displayLot, variable=default1, text="Stall (Standard Lot)").grid(column=0, row=2)
+
+# Create a checkbox for electronic parking lots
+ttk.Checkbutton(frm, onvalue=1, offvalue=0, command=displayELot, variable=default2, text="eLot").grid(column=1, row=2)
+
+# Create a label for displaying a message when no spaces are selected
 noSpaces = ttk.Label(frm, text=f"No spaces are selected!")
 noSpaces.grid(column=0, row=1)
-     
+
+# Start the main event loop
 root.mainloop()

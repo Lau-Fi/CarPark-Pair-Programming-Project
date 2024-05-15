@@ -74,19 +74,32 @@ data = [randomDuration1, randomDuration2, randomDuration3]
 
 print(data)
 
+# Defining the labels for the electronic parking lots
 simLabals = ("eLot 1", "eLot 2", "eLot 3")
-simSizes = data 
-index = [1,2,3]
 
+# Assigning the 'data' variable to the 'simSizes' variable
+simSizes = data
+
+# Defining the index values for the bar chart
+index = [1, 2, 3]
+
+# Creating a figure for the bar chart
 figure = plt.figure()
+
+# Adding a subplot to the figure
 axis = figure.add_subplot()
 
+# Defining the colors for the bars
 simColours = ['C1', 'C2', 'C3']
 
-axis.bar(index, simSizes, tick_label=simLabals, color = simColours)
+# Creating the bar chart with the specified parameters
+axis.bar(index, simSizes, tick_label=simLabals, color=simColours)
 
-axis.set(xlabel = "Electronic Parking Lots", ylabel = "Duration")
+# Setting the x and y labels for the chart
+axis.set(xlabel="Electronic Parking Lots", ylabel="Duration")
 
+# Displaying the chart
 plt.show()
 
+# Saving the figure as an image file
 figure.savefig("CarParkeLotDurationsGRAPH.jpg")

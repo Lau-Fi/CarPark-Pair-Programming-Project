@@ -11,30 +11,54 @@ Coursework for: 4009B Programming for applications
 """
 
 # Define a class called Station
-class Station():
-    # Set a class variable called basicCost to 1
+class Station:
+    """
+    Represents a charging station for electric vehicles.
+
+    Attributes:
+        unitCost (float): The cost per unit of energy.
+        rating (float): The charging station's rating in kilowatt-hours (kWh).
+        voltRange (tuple): The voltage range of the charging station.
+    """
+
     basicCost = 1
 
-    # Define the __init__ method to initialize the Station object with unitCost, rating, and voltRange
     def __init__(self, unitCost, rating, voltRange):
+        """
+        Initializes a charging station object.
+
+        Args:
+            unitCost (float): The cost per unit of energy.
+            rating (float): The charging station's rating in kilowatt-hours (kWh).
+            voltRange (tuple): The voltage range of the charging station.
+        """
         self.unitCost = unitCost
         self.rating = rating
         self.voltRange = voltRange
 
-    # Define the __str__ method to return a string representation of the Station object
     def __str__(self):
+        """
+        Returns a string representation of the charging station.
+
+        Returns:
+            str: A formatted string describing the charging station's attributes.
+        """
         return f"Charging Station: Rating - {self.rating} kWh, Voltage Range - {self.voltRange}, Unit Cost - {self.unitCost}"
 
-    # Define a method called session that takes reqMins as input
     def session(self, reqMins):
-        # Calculate the amount of energy used during the session
-        amount = self.rating * reqMins
-        # Calculate the total cost of the session
-        totalCost = self.basicCost + amount * self.unitCost
-        # Return the total cost and amount of energy used
-        return (totalCost, amount)
+        """
+        Simulates a charging session.
 
-# Define a tester function to test the Station class
+        Args:
+            reqMins (float): The requested duration of the charging session in minutes.
+
+        Returns:
+            tuple: A tuple containing the total cost and amount of energy used during the session.
+        """
+        amount = self.rating * reqMins
+        totalCost = self.basicCost + amount * self.unitCost
+        return totalCost, amount
+
 def tester():
     # Create an instance of the Station class with unitCost 0.7, rating 5, and voltRange (233, 421)
     stationClass = Station(0.7, 5, (233, 421))
@@ -45,7 +69,6 @@ def tester():
     # Print the session cost and amount of energy used
     print(sessionInput)
 
-# Check if the module is run directly
 if __name__ == "__main__":
-    # Call the tester function
+    # Call the tester function when the module is run directly
     tester()
