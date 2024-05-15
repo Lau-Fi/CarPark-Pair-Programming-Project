@@ -54,3 +54,83 @@ def tester():
 
 if __name__ == "__main__":
     tester()  # Call the tester function when running the script
+
+import a1_car as a1
+
+class Spot:
+    """
+    A class representing a parking spot.
+
+    Attributes:
+    - status: A string representing the status of the spot (Available or Occupied).
+    - durations: A list storing the durations of parked cars.
+    """
+
+    def __init__(self):
+        """
+        Initializes a Spot object with initial status as "Available" and an empty durations list.
+        """
+        self.status = "Available"
+        self.durations = []
+        
+    def __str__(self):
+        """
+        Returns a string representation of the Spot object.
+
+        Returns:
+        - A string representing the spot's status and durations.
+        """
+        return f"Your status of car parking is: {self.status}, The car durations are: {self.durations}"
+
+    def parking(self, car, duration):
+        """
+        Parks a car for a specific duration.
+
+        Parameters:
+        - car: A Car object to be parked.
+        - duration: An integer representing the duration of parking.
+
+        Returns:
+        - A boolean value indicating if the spot is available (True) or not (False).
+        """
+        if self.status == "Available":  # Check if the spot is available
+            self.durations.append(duration)  # Add the duration to the list
+            self.status = "Occupied"  # Update the status to "Occupied"
+            return True
+        else:
+            return False 
+
+    def reset(self):
+        """
+        Resets the spot's status to "Available".
+        """
+        self.status = "Available"
+
+    def clear(self):
+        """
+        Clears the spot's status and durations.
+        """
+        self.status = "Available"
+        self.durations.clear()
+
+def tester():
+    """
+    A function to test the Spot class.
+
+    It creates a Spot object, parks a car for a duration, and prints the spot information.
+    """
+    spot1 = Spot()  # Create a spot object with initial status and empty durations list
+    spot1.parking(a1.Car("Toyota", "Green", "BD5I SMR"), 4)  # Park a car for a duration of 4 as an example
+    print(spot1)  # Print the spot information
+    print(spot1.durations)
+
+if __name__ == "__main__":
+    """
+    The main entry point of the script.
+
+    """
+
+
+
+
+
